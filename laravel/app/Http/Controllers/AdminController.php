@@ -7,6 +7,11 @@ use App;
 
 class AdminController extends Controller
 {
+	public function __construct()
+	{
+		$this->middleware('auth');
+	}
+	
 	public function list_posts()
 	{
 		$posts = App\Post::all()->sortByDesc('created_at');
@@ -20,6 +25,10 @@ class AdminController extends Controller
 	
 	public function insert_new_post(Request $request)
 	{
+		$validatedData = $request->validate([
+			'title' => 'required|max:100',
+			'text' => 'required',
+		]);
 		$title = $request->input('title');
 		$text = $request->input('text');
 		
@@ -36,6 +45,10 @@ class AdminController extends Controller
 	
 	public function update_post(Request $request)
 	{
+		$validatedData = $request->validate([
+			'title' => 'required|max:100',
+			'text' => 'required',
+		]);
 		$posts = App\Post::find($request->id);
 		$posts->title = $request->title;
 		$posts->text = $request->text;

@@ -11,17 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'BlogController@list_posts');
 
-Route::get('/admin', 'AdminLoginController@login');
+Route::get('/post/{id}', 'BlogController@post_detailed');
 
-Route::post('/admin/login', 'AdminLoginController@authenticate');
+Auth::routes();
 
-Route::get('/admin/logout', 'AdminLoginController@logout');
-
-Route::post('/admin/register', 'AdminLoginController@register');
+Route::get('/admin', 'HomeController@index')->name('home');
 
 Route::get('/admin/list', 'AdminController@list_posts');
 
