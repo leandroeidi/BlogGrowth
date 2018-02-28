@@ -8,7 +8,8 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">List of Posts</div>
-
+                <post-list></post-list>
+                {{--
                 <div class="card-body">
 
 					@if(count($posts) > 0)
@@ -23,6 +24,7 @@
                         There are no posts in this blog.
                     @endif
                 </div>
+                --}}
             </div>
         </div>
     </div>

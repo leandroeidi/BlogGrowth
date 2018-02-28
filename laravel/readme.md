@@ -1,3 +1,11 @@
+# How to setup Data
+
+```
+$ php artisan db:seed
+```
+
+you can login gri@grooowth.co.jp/password
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
