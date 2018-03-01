@@ -20,7 +20,13 @@ class BlogController extends App\Http\Controllers\Controller
 		
 		$previous = App\Post::where('id', '<', $post->id)->max('id');
         $next = App\Post::where('id', '>', $post->id)->min('id');
-			
-		return view('post', array('id' => $id, 'title' => $post->title, 'text' => $post->text, 'created_at' => $post->created_at, 'previous_id' => $previous, 'next_id' => $next));
+		
+		$post = $post->toArray();
+		$post["previousId"] = empty($previous) ? 0 : $previous;
+		$post["nextId"] = empty($next) ? 0 : $next;
+		
+		$post["created_at"] = date('m-d-Y', strtotime($post["created_at"]));
+		
+		return response()->json(self::camelizeAllKeys($post));
 	}
 }
